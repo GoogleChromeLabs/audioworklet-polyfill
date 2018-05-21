@@ -1,11 +1,19 @@
-# AudioWorklet Polyfill
+<p align="center">
+  <img src="https://i.imgur.com/RqW6b4o.png" width="300" height="300" alt="AudioWorklet Polyfill">
+  <h1 align="center">
+  	AudioWorklet Polyfill
+	<a href="https://www.npmjs.org/package/audioworklet-polyfill"><img src="https://img.shields.io/npm/v/audioworklet-polyfill.svg?style=flat" alt="npm"></a>
+  </h1>
+</p>
 
-Polyfills [AudioWorklet] in browsers that don't support them, using ScriptProcessorNodes under the hood.
+Polyfills [AudioWorklet] in browsers that don't support it, using ScriptProcessorNodes under the hood.
 
 Worklets are invoked on the main thread within an isolated scope emulating that of a Worklet.
 
 | [Demo #1](https://googlechromelabs.github.io/audioworklet-polyfill/) | [Demo #2](https://audio-dsp-playground-polyfilled.surge.sh) |
 |-|-|
+
+> New to AudioWorklet? Check out this great [Introduction and Demos](https://developers.google.com/web/updates/2017/12/audio-worklet).
 
 ## Usage
 
@@ -39,4 +47,4 @@ import('https://unpkg.com/audioworklet-polyfill/dist/audioworklet-polyfill.js');
 
 [Apache 2.0](LICENSE)
 
-[AudioWorklets]: https://googlechromelabs.github.io/web-audio-samples/audio-worklet/
+[AudioWorklet]: https://googlechromelabs.github.io/web-audio-samples/audio-worklet/
