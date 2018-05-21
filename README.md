@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/RqW6b4o.png" width="300" height="300" alt="AudioWorklet Polyfill">
+  <img src="https://i.imgur.com/RqW6b4o.png" width="200" height="200" alt="AudioWorklet Polyfill">
   <h1 align="center">
   	AudioWorklet Polyfill
 	<a href="https://www.npmjs.org/package/audioworklet-polyfill"><img src="https://img.shields.io/npm/v/audioworklet-polyfill.svg?style=flat" alt="npm"></a>
