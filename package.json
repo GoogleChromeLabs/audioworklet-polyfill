@@ -1,0 +1,68 @@
+{
+  "name": "audioworklet-polyfill",
+  "version": "1.0.0",
+  "description": "AudioWorklet polyfill using the legacy ScriptProcessor API.",
+  "source": "src/index.js",
+  "main": "dist/audioworklet-polyfill.js",
+  "license": "Apache-2.0",
+  "author": "The Chromium Authors",
+  "contributors": [
+    {
+      "name": "Jason Miller",
+      "email": "developit@google.com"
+    }
+  ],
+  "repository": "GoogleChromeLabs/audioworklet-polyfill",
+  "scripts": {
+    "build": "microbundle -f iife && cp -r demo dist/",
+    "start": "concurrently serve \"microbundle watch -f iife\"",
+    "test": "eslint src",
+    "deploy": "cp -rf demo build && cp -r dist build/ && sed -i '' 's/\\.\\.\\/dist/dist/' build/index.html && gh-pages -d build && rm -rf build"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "env": {
+      "browser": true,
+      "node": false
+    },
+    "rules": {
+      "indent": [
+        2,
+        2
+      ],
+      "semi": [
+        2,
+        "always"
+      ],
+      "prefer-const": 1
+    },
+    "globals": {
+      "registerProcessor": 1,
+      "AudioWorkletProcessor": 1
+    }
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "keywords": [
+    "audio",
+    "worklet",
+    "polyfill",
+    "audio worklet",
+    "scriptprocessornode",
+    "web audio"
+  ],
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "gh-pages": "^1.1.0",
+    "microbundle": "^0.4.4",
+    "serve": "^6.5.7"
+  }
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<p>
+			This is a demonstration of the AudioWorklet Polyfill.
+		</p>
+
+		<p style="font-style: italic;">
+			<strong>Note:</strong> This polyfill runs AudioWorklets in an isolated context on the main thread.
+		</p>
+
+		<div>
+			<strong>Source:</strong>
+			<pre><a href="./demo.js">demo.js</a></pre>
+			<pre><a href="./noise-generator-worklet.js">noise-generator-worklet.js</a></pre>
+			<pre><a href="./demo-worklet.js">demo-worklet.js</a></pre>
+		</div>
+
+		<button id="play">Click me!</button>
+
+		<script src="https://cdn.rawgit.com/developit/781ef9620da8a30228b9f0c6e21fa7f6/raw/b228b3fadb2284957d040057e6701a49f522198f/transpiler-lite.umd.js"></script>
+		<script src="../dist/audioworklet-polyfill.js"></script>
+
+		<script src="demo.js"></script>
+	</body>
+</html>
