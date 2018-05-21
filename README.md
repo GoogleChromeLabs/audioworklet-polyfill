@@ -10,7 +10,7 @@ Polyfills [AudioWorklet] in browsers that don't support it, using ScriptProcesso
 
 Worklets are invoked on the main thread within an isolated scope emulating that of a Worklet.
 
-| [Demo #1](https://googlechromelabs.github.io/audioworklet-polyfill/) | [Demo #2](https://audio-dsp-playground-polyfilled.surge.sh) |
+| [Basic Demo](https://googlechromelabs.github.io/audioworklet-polyfill/) | [DSP Playground Demo](https://audio-dsp-playground-polyfilled.surge.sh) |
 |-|-|
 
 > New to AudioWorklet? Check out this great [Introduction and Demos](https://developers.google.com/web/updates/2017/12/audio-worklet).
