@@ -16,8 +16,6 @@
 
 import { Realm } from './realm';
 
-const BUFFER_SIZE = 256;
-
 if (typeof AudioWorkletNode !== 'function') {
   window.AudioWorkletNode = function AudioWorkletNode (context, name) {
     const processor = getProcessorsForContext(context)[name];
@@ -36,7 +34,7 @@ if (typeof AudioWorkletNode !== 'function') {
     const inst = new processor.Processor({});
 
     this.port = processor.port;
-    const scriptProcessor = context.createScriptProcessor(BUFFER_SIZE);
+    const scriptProcessor = context.createScriptProcessor();
     scriptProcessor.node = this;
     scriptProcessor.processor = processor;
     scriptProcessor.instance = inst;
