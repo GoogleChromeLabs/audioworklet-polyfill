@@ -19,6 +19,8 @@
 // Copied verbatim from houdini-samples:
 // https://developers.google.com/web/updates/2017/12/audio-worklet#background_scriptprocessornode
 
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
 document.getElementById('play').onclick = function() {
 	var context = new AudioContext();
 
@@ -30,8 +32,8 @@ document.getElementById('play').onclick = function() {
 	}
 
 	context.audioWorklet.addModule('noise-generator-worklet.js').then(() => {
-		let modulator = new OscillatorNode(context);
-		let modGain = new GainNode(context);
+		let modulator = context.createOscillator();
+		let modGain = context.createGain();
 		let noiseGenerator = new AudioWorkletNode(context, 'noise-generator');
 		noiseGenerator.connect(context.destination);
 		// Connect the oscillator to 'amplitude' AudioParam.
@@ -47,7 +49,7 @@ document.getElementById('play').onclick = function() {
 	/*
 	// Loads module script via AudioWorklet.
 	context.audioWorklet.addModule('dmeo-worklet.js').then(() => {
-		var oscillator = new OscillatorNode(context);
+		var oscillator = context.createOscillator();
 
 		// After the resolution of module loading, an AudioWorkletNode can be constructed.
 		var demoNode = new AudioWorkletNode(context, 'demo');
