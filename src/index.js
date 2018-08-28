@@ -16,6 +16,9 @@
 
 import { Realm } from './realm';
 
+const PARAMS = [];
+let nextPort;
+
 if (typeof AudioWorkletNode !== 'function') {
   window.AudioWorkletNode = function AudioWorkletNode (context, name) {
     const processor = getProcessorsForContext(context)[name];
@@ -72,29 +75,22 @@ if (typeof AudioWorkletNode !== 'function') {
         if (!r.ok) throw Error(r.status);
         return r.text();
       }).then(code => {
-        const mc = new MessageChannel();
         const context = {
           sampleRate: 0,
           currentTime: 0,
-          AudioWorkletProcessor () { },
+          AudioWorkletProcessor () {
+            this.port = nextPort;
+          },
           registerProcessor: (name, Processor) => {
             const processors = getProcessorsForContext(this.$$context);
             processors[name] = {
-              port: mc.port1,
               realm,
               context,
               Processor,
               properties: Processor.parameterDescriptors || []
             };
-          },
-          postMessage (e) { mc.port2.postMessage(e); },
-          addEventListener (type, fn) { mc.port2.addEventListener(type, fn); },
-          removeEventListener (type, fn) { mc.port2.addEventListener(type, fn); }
+          }
         };
-        Object.defineProperty(context, 'onmessage', {
-          get () { return mc.port2.onmessage; },
-          set (f) { mc.port2.onmessage = f; }
-        });
         context.self = context;
         const realm = new Realm(context, document.documentElement);
         realm.exec(((options && options.transpile) || String)(code));
@@ -103,8 +99,6 @@ if (typeof AudioWorkletNode !== 'function') {
     }
   };
 }
-
-const PARAMS = [];
 
 function onAudioProcess (e) {
   const parameters = {};
