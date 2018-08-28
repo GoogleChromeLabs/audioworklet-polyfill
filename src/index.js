@@ -109,7 +109,7 @@ function onAudioProcess (e) {
   const parameters = {};
   let index = -1;
   this.node.parameters.forEach((value, key) => {
-    const arr = PARAMS[++index] || (PARAMS[index] = new Float32Array(BUFFER_SIZE));
+    const arr = PARAMS[++index] || (PARAMS[index] = new Float32Array(this.bufferSize));
     // @TODO proper values here if possible
     arr.fill(value.value);
     parameters[key] = arr;
