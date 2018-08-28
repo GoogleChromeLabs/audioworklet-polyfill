@@ -20,44 +20,32 @@ const PARAMS = [];
 let nextPort;
 
 if (typeof AudioWorkletNode !== 'function') {
-  window.AudioWorkletNode = function AudioWorkletNode (context, name) {
+  window.AudioWorkletNode = function AudioWorkletNode (context, name, options) {
     const processor = getProcessorsForContext(context)[name];
+    const scriptProcessor = context.createScriptProcessor();
 
-    this.parameters = new Map();
+    scriptProcessor.parameters = new Map();
     if (processor.properties) {
       for (let i = 0; i < processor.properties.length; i++) {
         const prop = processor.properties[i];
         const node = context.createGain().gain;
         node.value = prop.defaultValue;
         // @TODO there's no good way to construct the proxy AudioParam here
-        this.parameters.set(prop.name, node);
+        scriptProcessor.parameters.set(prop.name, node);
       }
     }
 
-    const inst = new processor.Processor({});
+    const mc = new MessageChannel();
+    this.port = mc.port1;
+    nextPort = mc.port2;
+    const inst = new processor.Processor(options || {});
+    nextPort = null;
 
-    this.port = processor.port;
-    const scriptProcessor = context.createScriptProcessor();
-    scriptProcessor.node = this;
     scriptProcessor.processor = processor;
     scriptProcessor.instance = inst;
     scriptProcessor.onaudioprocess = onAudioProcess;
-    Object.defineProperty(this, '$$node', { value: scriptProcessor });
+    return scriptProcessor;
   };
-
-  Object.defineProperties(window.AudioWorkletNode.prototype = Object.create(AudioNode.prototype), {
-    bufferSize: {
-      get () {
-        return this.$$node.bufferSize;
-      }
-    },
-    connect: { value (to) {
-      return this.$$node.connect(to);
-    } },
-    disconnect: { value () {
-      return this.$$node.disconnect();
-    } }
-  });
 
   Object.defineProperty(AudioContext.prototype, 'audioWorklet', {
     get () {
@@ -103,7 +91,7 @@ if (typeof AudioWorkletNode !== 'function') {
 function onAudioProcess (e) {
   const parameters = {};
   let index = -1;
-  this.node.parameters.forEach((value, key) => {
+  this.parameters.forEach((value, key) => {
     const arr = PARAMS[++index] || (PARAMS[index] = new Float32Array(this.bufferSize));
     // @TODO proper values here if possible
     arr.fill(value.value);
