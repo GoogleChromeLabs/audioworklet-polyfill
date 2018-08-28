@@ -8,12 +8,12 @@
 
 Polyfills [AudioWorklet] in browsers that don't support it, using ScriptProcessorNodes under the hood.
 
-Worklets are invoked on the main thread within an isolated scope emulating that of a Worklet.
+Worklets are invoked on the main thread within an isolated scope emulating that of a Worklet. 
 
 | [Basic Demo](https://googlechromelabs.github.io/audioworklet-polyfill/) | [DSP Playground Demo](https://audio-dsp-playground-polyfilled.surge.sh) |
 |-|-|
 
-> New to AudioWorklet? Check out this great [Introduction and Demos](https://developers.google.com/web/updates/2017/12/audio-worklet) or the [AudioWorklet Examples].
+> **New to AudioWorklet?** Check out this great [Introduction and Demos](https://developers.google.com/web/updates/2017/12/audio-worklet) or the [AudioWorklet Examples].
 
 ## Usage
 
@@ -38,6 +38,10 @@ import('https://unpkg.com/audioworklet-polyfill/dist/audioworklet-polyfill.js');
 ## Roadmap
 
 - Improve support for custom parameters
+
+## Why are Worklets emulated on the main thread?
+
+This polyfill is intended to be a bridging solution until AudioWorklet is implemented across all browsers. It's an improvement over ScriptProcessorNode even though that's what it uses under the hood, because code written using this polyfill is forwards-compatible: as native support improves, your application improves. This polyfill offers a simple, future-proof alternative to ScriptProcessorNode without introducing Workers or relying on shared memory.
 
 ## Similar Libraries
 
