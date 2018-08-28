@@ -81,6 +81,7 @@ if (typeof AudioWorkletNode !== 'function') {
             const processors = getProcessorsForContext(this.$$context);
             processors[name] = {
               port: mc.port1,
+              realm,
               context,
               Processor,
               properties: Processor.parameterDescriptors || []
@@ -114,8 +115,10 @@ function onAudioProcess (e) {
     arr.fill(value.value);
     parameters[key] = arr;
   });
-  this.processor.context.sampleRate = this.context.sampleRate;
-  this.processor.context.currentTime = this.context.currentTime;
+  this.processor.realm.exec(
+    'self.sampleRate=sampleRate=' + this.context.sampleRate + ';' +
+    'self.currentTime=currentTime=' + this.context.currentTime
+  );
   const inputs = channelToArray(e.inputBuffer);
   const outputs = channelToArray(e.outputBuffer);
   this.instance.process([inputs], [outputs], parameters);
