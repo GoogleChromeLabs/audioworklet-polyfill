@@ -1,6 +1,6 @@
 {
   "name": "audioworklet-polyfill",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "AudioWorklet polyfill using the legacy ScriptProcessor API.",
   "source": "src/index.js",
   "main": "dist/audioworklet-polyfill.js",
