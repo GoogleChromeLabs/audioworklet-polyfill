@@ -36,10 +36,7 @@ document.getElementById('play').onclick = function() {
 		let modGain = context.createGain();
 		let noiseGenerator = new AudioWorkletNode(context, 'noise-generator');
 		noiseGenerator.connect(context.destination);
-		// Connect the oscillator to 'amplitude' AudioParam.
 		let paramAmp = noiseGenerator.parameters.get('amplitude');
-		console.log(paramAmp);
-		setInterval(() => console.log(paramAmp.value), 250);
 		modulator.connect(modGain).connect(paramAmp);
 		modulator.frequency.value = 0.5;
 		modGain.gain.value = 0.75;
@@ -48,7 +45,7 @@ document.getElementById('play').onclick = function() {
 	
 	/*
 	// Loads module script via AudioWorklet.
-	context.audioWorklet.addModule('dmeo-worklet.js').then(() => {
+	context.audioWorklet.addModule('demo-worklet.js').then(() => {
 		var oscillator = context.createOscillator();
 
 		// After the resolution of module loading, an AudioWorkletNode can be constructed.

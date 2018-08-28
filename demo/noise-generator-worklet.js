@@ -13,10 +13,15 @@ class NoiseGenerator extends AudioWorkletProcessor {
     return [{ name: 'amplitude', defaultValue: 0.25, minValue: 0, maxValue: 1 }];
   }
 
+  // constructor (options) {
+  //   super();
+  //   console.log('options: ', options);
+  //   console.log(this.port);
+  // }
+
   process (inputs, outputs, parameters) {
     const output = outputs[0];
     const amplitude = parameters.amplitude;
-    // console.log(amplitude);
     for (let channel = 0; channel < output.length; ++channel) {
       const outputChannel = output[channel];
       for (let i = 0; i < outputChannel.length; ++i) {
