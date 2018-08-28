@@ -13,7 +13,7 @@ Worklets are invoked on the main thread within an isolated scope emulating that 
 | [Basic Demo](https://googlechromelabs.github.io/audioworklet-polyfill/) | [DSP Playground Demo](https://audio-dsp-playground-polyfilled.surge.sh) |
 |-|-|
 
-> New to AudioWorklet? Check out this great [Introduction and Demos](https://developers.google.com/web/updates/2017/12/audio-worklet).
+> New to AudioWorklet? Check out this great [Introduction and Demos](https://developers.google.com/web/updates/2017/12/audio-worklet) or the [AudioWorklet Examples].
 
 ## Usage
 
@@ -47,4 +47,5 @@ import('https://unpkg.com/audioworklet-polyfill/dist/audioworklet-polyfill.js');
 
 [Apache 2.0](LICENSE)
 
-[AudioWorklet]: https://googlechromelabs.github.io/web-audio-samples/audio-worklet/
+[AudioWorklet]: https://webaudio.github.io/web-audio-api/#AudioWorklet
+[AudioWorklet Examples]: https://googlechromelabs.github.io/web-audio-samples/audio-worklet/
