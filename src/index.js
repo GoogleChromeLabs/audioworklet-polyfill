@@ -36,11 +36,11 @@ if (typeof AudioWorkletNode !== 'function') {
     }
 
     const mc = new MessageChannel();
-    this.port = mc.port1;
     nextPort = mc.port2;
     const inst = new processor.Processor(options || {});
     nextPort = null;
 
+    scriptProcessor.port = mc.port1;
     scriptProcessor.processor = processor;
     scriptProcessor.instance = inst;
     scriptProcessor.onaudioprocess = onAudioProcess;
