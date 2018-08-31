@@ -20,7 +20,7 @@ const PARAMS = [];
 let nextPort;
 
 if (typeof AudioWorkletNode !== 'function') {
-  window.AudioWorkletNode = function AudioWorkletNode (context, name, options) {
+  self.AudioWorkletNode = function AudioWorkletNode (context, name, options) {
     const processor = getProcessorsForContext(context)[name];
     const scriptProcessor = context.createScriptProcessor();
 
@@ -47,13 +47,13 @@ if (typeof AudioWorkletNode !== 'function') {
     return scriptProcessor;
   };
 
-  Object.defineProperty((window.AudioContext||webkitAudioContext).prototype, 'audioWorklet', {
+  Object.defineProperty((self.AudioContext || self.webkitAudioContext).prototype, 'audioWorklet', {
     get () {
-      return this.$$audioWorklet || (this.$$audioWorklet = new window.AudioWorklet(this));
+      return this.$$audioWorklet || (this.$$audioWorklet = new self.AudioWorklet(this));
     }
   });
 
-  window.AudioWorklet = class AudioWorklet {
+  self.AudioWorklet = class AudioWorklet {
     constructor (audioContext) {
       this.$$context = audioContext;
     }
