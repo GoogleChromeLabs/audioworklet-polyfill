@@ -47,7 +47,7 @@ if (typeof AudioWorkletNode !== 'function') {
     return scriptProcessor;
   };
 
-  Object.defineProperty(AudioContext.prototype, 'audioWorklet', {
+  Object.defineProperty((window.AudioContext||webkitAudioContext).prototype, 'audioWorklet', {
     get () {
       return this.$$audioWorklet || (this.$$audioWorklet = new window.AudioWorklet(this));
     }
