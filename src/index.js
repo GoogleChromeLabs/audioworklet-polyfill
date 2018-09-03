@@ -23,8 +23,7 @@ if (typeof AudioWorkletNode !== 'function') {
   self.AudioWorkletNode = function AudioWorkletNode (context, name, options) {
     const processor = getProcessorsForContext(context)[name];
     const outputChannels = options && options.outputChannelCount ? options.outputChannelCount[0] : 2;
-    const inputChannels = options && options.inputChannelCount ? options.inputChannelCount[0] : 2;     
-    const scriptProcessor = context.createScriptProcessor(undefined, inputChannels, outputChannels);
+    const scriptProcessor = context.createScriptProcessor(undefined, 2, outputChannels);
 
     scriptProcessor.parameters = new Map();
     if (processor.properties) {
