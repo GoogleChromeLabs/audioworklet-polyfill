@@ -6,9 +6,9 @@
   </h1>
 </p>
 
-Polyfills [AudioWorklet] in browsers that don't support it, using ScriptProcessorNodes under the hood. Build effects using AudioWorklet, and they'll work in Chrome, Firefox, Safari and Edge.
+> #### 1kB polyfill for [AudioWorklet].
 
-Worklets are invoked on the main thread within an isolated scope emulating that of a Worklet. 
+`audioworklet-polyfill` brings AudioWorklet support to all major browsers: Chrome, Firefox, Safari and Edge. It uses ScriptProcessorNode under the hood, and runs your Worklet code on the main thread in an isolated scope.
 
 | [Basic Demo](https://googlechromelabs.github.io/audioworklet-polyfill/) | [DSP Playground Demo](https://audio-dsp-playground-polyfilled.surge.sh) |
 |-|-|
