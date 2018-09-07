@@ -6,7 +6,7 @@
   </h1>
 </p>
 
-Polyfills [AudioWorklet] in browsers that don't support it, using ScriptProcessorNodes under the hood.
+Polyfills [AudioWorklet] in browsers that don't support it, using ScriptProcessorNodes under the hood. Build effects using AudioWorklet, and they'll work in Chrome, Firefox, Safari and Edge.
 
 Worklets are invoked on the main thread within an isolated scope emulating that of a Worklet. 
 
