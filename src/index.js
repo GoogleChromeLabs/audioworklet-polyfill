@@ -65,8 +65,8 @@ if (typeof AudioWorkletNode !== 'function') {
         return r.text();
       }).then(code => {
         const context = {
-          sampleRate: 0,
-          currentTime: 0,
+          sampleRate: this.$$context.sampleRate,
+          currentTime: this.$$context.currentTime,
           AudioWorkletProcessor () {
             this.port = nextPort;
           },
@@ -80,6 +80,7 @@ if (typeof AudioWorkletNode !== 'function') {
             };
           }
         };
+
         context.self = context;
         const realm = new Realm(context, document.documentElement);
         realm.exec(((options && options.transpile) || String)(code));
