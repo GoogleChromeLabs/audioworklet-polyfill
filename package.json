@@ -63,6 +63,6 @@
     "eslint-plugin-standard": "^3.0.1",
     "gh-pages": "^1.1.0",
     "microbundle": "^0.4.4",
-    "serve": "^6.5.7"
+    "serve": "^11.3.0"
   }
 }
