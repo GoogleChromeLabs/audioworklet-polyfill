@@ -39,5 +39,5 @@ export function Realm (scope, parentElement) {
         ${vars};return function() {return eval(arguments[0])}}`
   ));
   doc.body.appendChild(script);
-  this.exec = win.$hook(scope, console);
+  this.exec = win.$hook.call(scope, scope, console);
 }
