@@ -4,7 +4,7 @@
   	AudioWorklet Polyfill
 	<a href="https://www.npmjs.org/package/audioworklet-polyfill"><img src="https://img.shields.io/npm/v/audioworklet-polyfill.svg?style=flat" alt="npm"></a>
   </h1>
-  <h3 align="center">1kB polyfill for <a href="https://developers.google.com/web/updates/2017/12/audio-worklet">AudioWorklet</a>.</h3>
+  <h3 align="center">2kB polyfill for <a href="https://developers.google.com/web/updates/2017/12/audio-worklet">AudioWorklet</a>.</h3>
 </p>
 
 `audioworklet-polyfill` is a tiny JavaScript library that brings AudioWorklet support to all major browsers: Chrome, Firefox, Safari and Edge. It uses ScriptProcessorNode under the hood, and runs your Worklet code in an isolated scope on the main thread ([read why](#why-are-worklets-emulated-on-the-main-thread)).
