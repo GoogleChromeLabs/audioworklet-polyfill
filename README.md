@@ -13,6 +13,7 @@
 |-|-|
 
 > **New to AudioWorklet?** Check out this great [Introduction and Demos](https://developers.google.com/web/updates/2017/12/audio-worklet) or the [AudioWorklet Examples].
+> See [Can I Use](https://caniuse.com/#feat=mdn-api_audioworklet) for browser support.
 
 ## Usage
 
