@@ -45,6 +45,14 @@ if (typeof AudioWorkletNode !== 'function' || !("audioWorklet" in AudioContext.p
     scriptProcessor.processor = processor;
     scriptProcessor.instance = inst;
     scriptProcessor.onaudioprocess = onAudioProcess;
+
+    if (options.numberOfOutputs === 0) {
+      // On browsers that do support AudioWorklet, process() will be invoked for disconnected
+      // AudioWorkletNodes as long as they are created with numberOfOutputs: 0.
+      // In Safari, onaudioprocess is only invoked on a ScriptProcessorNode if it is connected to an output.
+      scriptProcessor.connect(context.destination);
+    }
+
     return scriptProcessor;
   };
 
