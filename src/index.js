@@ -67,8 +67,10 @@ if (typeof AudioWorkletNode !== 'function' || !("audioWorklet" in AudioContext.p
         const context = {
           sampleRate: this.$$context.sampleRate,
           currentTime: this.$$context.currentTime,
-          AudioWorkletProcessor () {
-            this.port = nextPort;
+          AudioWorkletProcessor: class AudioWorkletProcessor {
+            constructor() {
+              this.port = nextPort;
+            }
           },
           registerProcessor: (name, Processor) => {
             const processors = getProcessorsForContext(this.$$context);
