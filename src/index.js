@@ -105,6 +105,11 @@ function onAudioProcess (e) {
   );
   const inputs = channelToArray(e.inputBuffer);
   const outputs = channelToArray(e.outputBuffer);
+  for (let i = 0; i < outputs.length; i++) {
+    for (let j = 0; j < outputs[i].length; j++) {
+      outputs[i][j] = 0;
+    }
+  }
   this.instance.process([inputs], [outputs], parameters);
 
   // @todo - keepalive
