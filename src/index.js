@@ -19,7 +19,7 @@ import { Realm } from './realm';
 const PARAMS = [];
 let nextPort;
 
-if (typeof AudioWorkletNode !== 'function' || !("audioWorklet" in AudioContext.prototype)) {
+if (typeof AudioWorkletNode !== 'function' || !('audioWorklet' in AudioContext.prototype)) {
   self.AudioWorkletNode = function AudioWorkletNode (context, name, options) {
     const processor = getProcessorsForContext(context)[name];
     const outputChannels = options && options.outputChannelCount ? options.outputChannelCount[0] : 2;
