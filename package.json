@@ -17,7 +17,7 @@
     "build": "microbundle -f iife",
     "start": "concurrently serve \"microbundle watch -f iife\"",
     "test": "eslint src",
-    "deploy": "cp -rf demo build && cp -r dist build/ && sed -i '' 's/\\.\\.\\/dist/dist/' build/index.html && gh-pages -d build && rm -rf build"
+    "deploy": "npm run build && cp -rf demo build && cp -r dist build/ && sed -i '' 's/\\.\\.\\/dist/dist/' build/index.html && gh-pages -d build && rm -rf build"
   },
   "eslintConfig": {
     "extends": "standard",
