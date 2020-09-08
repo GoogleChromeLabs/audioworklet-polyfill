@@ -60,32 +60,27 @@ if (typeof AudioWorkletNode !== 'function' || !("audioWorklet" in AudioContext.p
     }
 
     addModule (url, options) {
-      return fetch(url).then(r => {
-        if (!r.ok) throw Error(r.status);
-        return r.text();
-      }).then(code => {
-        const context = {
-          sampleRate: this.$$context.sampleRate,
-          currentTime: this.$$context.currentTime,
-          AudioWorkletProcessor () {
-            this.port = nextPort;
-          },
-          registerProcessor: (name, Processor) => {
-            const processors = getProcessorsForContext(this.$$context);
-            processors[name] = {
-              realm,
-              context,
-              Processor,
-              properties: Processor.parameterDescriptors || []
-            };
-          }
-        };
+      const context = {
+        sampleRate: this.$$context.sampleRate,
+        currentTime: this.$$context.currentTime,
+        AudioWorkletProcessor () {
+          this.port = nextPort;
+        },
+        registerProcessor: (name, Processor) => {
+          const processors = getProcessorsForContext(this.$$context);
+          processors[name] = {
+            realm,
+            context,
+            Processor,
+            properties: Processor.parameterDescriptors || []
+          };
+        }
+      };
 
-        context.self = context;
-        const realm = new Realm(context, document.documentElement);
-        realm.exec(((options && options.transpile) || String)(code));
-        return null;
-      });
+      context.self = context;
+      const realm = new Realm(context, document.documentElement);
+      realm.exec(url);
+      return null;
     }
   };
 }
