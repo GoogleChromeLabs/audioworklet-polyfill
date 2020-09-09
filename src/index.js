@@ -79,8 +79,7 @@ if (typeof AudioWorkletNode !== 'function' || !("audioWorklet" in AudioContext.p
 
       context.self = context;
       const realm = new Realm(context, document.documentElement);
-      realm.exec(url);
-      return null;
+      return realm.exec(url);
     }
   };
 }
