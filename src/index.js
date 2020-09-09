@@ -59,7 +59,7 @@ if (typeof AudioWorkletNode !== 'function' || !("audioWorklet" in AudioContext.p
       this.$$context = audioContext;
     }
 
-    addModule (url, options) {
+    addModule (url) {
       const context = {
         sampleRate: this.$$context.sampleRate,
         currentTime: this.$$context.currentTime,
