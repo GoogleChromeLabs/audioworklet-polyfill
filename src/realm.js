@@ -36,7 +36,7 @@ export function Realm (scope, parentElement) {
   const script = doc.createElement('script');
   script.appendChild(doc.createTextNode(
     `function $hook(self,console) {"use strict";
-        ${vars};return function() {return eval(arguments[0])}}`
+        ${vars};return function() {return import(arguments[0])}}`
   ));
   doc.body.appendChild(script);
   this.exec = win.$hook.call(scope, scope, console);
